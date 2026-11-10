@@ -16,20 +16,33 @@ at drift: a requirement, its design and the code that implements it no longer sa
 
 - `GUIDE.md`: how to use viki as a librarian. **This is the part a project vendors.** Each guideline names the
   finding behind it.
-- `trials/`: one directory per trial: what was asked, what would count against the claim (written first), the
-  harness, and the results. What a trial finds reaches `GUIDE.md` only as a conclusion that changes something.
+- **Trials live elsewhere:** in `../viki-agent-self-improvement`, which is private because the mining runs on
+  private data (a project's files, its transcripts, its people's questions). What a trial finds reaches this
+  repository only as a conclusion that changes something: a guideline, a requirement, a FINDINGS line with numbers
+  and no private text.
 - `REQUIREMENTS_v1.md`, `FINDINGS.md`: the working set, in SE1's form. The requirements are a draft, not yet read
   back.
 - `AGENTS.md` (SE1 v1.7) and `AGENTS-DM.md` (DM1 v1.3): copied unedited from `../viki`, loaded by `CLAUDE.md`.
   This is a minimal adoption: no `se`/`dm` tools and no QUICKREF yet.
 
-## Where things are today
+## The librarian
 
-The librarian's code is still in viki: `vk.py outline`, `librarian`, `embed` and `ask` (viki's `tools/vk.py`,
-commit `4697c8f` on viki's `dogfood` branch), with its experiments in viki's `test/librarian/`. Whether it moves
-here is open: see `REQUIREMENTS_v1.md`, Not yet answered 1.
+`librarian/la.py`: `outline`, `librarian`, `embed` and `ask`, moved here from viki's `tools/vk.py` on 2026-11-10
+(Warren: "move the librarian code to viki-agent"; viki `1215fe2` is the last commit that has it). It needs viki
+beside this repository, or `$VIKI_TOOLS` pointing at viki's `tools/`: viki's built store library
+(`sh core/test/store-check.sh` in viki builds it), and, for vectors, its embedder (`tools/build-embed.sh`) and the
+pinned model (`$VIKI_MODEL_DIR`).
+
+```sh
+python3 ../viki/tools/vk.py --store D --keyfile K ingest-git PROJECT     # viki: the store
+python3 librarian/la.py --store D --keyfile K outline --repo NAME       # concepts, by Sonnet
+python3 librarian/la.py --store D --keyfile K librarian --repo NAME     # entries per node; updates from the diff
+python3 librarian/la.py --store D --keyfile K embed --repo NAME         # vectors of nodes and questions
+python3 librarian/la.py --store D --keyfile K ask "a question in your own words"
+python3 librarian/test_la.py                                            # 4 tests, fake models
+```
 
 ## Vendoring
 
-Not yet defined. The intended shape is `GUIDE.md` copied into a project and imported by its `CLAUDE.md`, as SE1's
-`AGENTS.md` is, plus the librarian's commands. That depends on Not yet answered 1.
+Not yet defined. The intended shape: `GUIDE.md` copied into a project and imported by its `CLAUDE.md`, as SE1's
+`AGENTS.md` is, and `librarian/` beside it, with viki found through `$VIKI_TOOLS`.

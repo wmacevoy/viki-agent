@@ -45,9 +45,9 @@ Invented numbers are marked *(invented)*.
 
 ## Not yet answered
 
-1. **Where the librarian's code lives.** Today it is in viki's `tools/vk.py` (outline, librarian, embed, ask).
-   viki's SHAPE-7 puts judgment outside viki, which argues for moving the prompts and protocols here and leaving
-   viki's host the mechanics. Proposal: move it, once the client says so.
+1. ~~Where the librarian's code lives.~~ *Answered* 2026-11-10: here (Warren: "move the librarian code to
+   viki-agent"). It is `librarian/la.py`. viki keeps the store, the host, and the grants of the librarian's
+   principals.
 2. **What a drift report looks like,** and how it is tested (a planted disagreement, as `../compaction` plants
    claims).
 3. **A question set that is independent of the answers,** large enough to tell a 0.05 change in MRR from chance
