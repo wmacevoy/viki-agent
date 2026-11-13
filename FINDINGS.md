@@ -2,6 +2,19 @@
 
 What was learned the expensive way, newest first. Each entry ends with what it changed, or why nothing.
 
+## 2026-11-13 — Unmixing the query did not beat cosine
+
+Warren: "maybe cosine match is wrong. maybe querys should me more like inverse spectroscopy." The vector leg was
+re-ranked by non-negative least squares: the query rebuilt from its 200 nearest vectors, each node scored by its
+weight (the λ = 0 case of Non-negative Elastic Net decoding, arXiv 2606.17910). Plan and counter-results written
+first; same store and 26 DEV questions as the 0.482 result, which the control reproduced exactly. Vector leg alone,
+file MRR: cosine 0.380, unmixing 0.294, 6 wins and 12 losses (p = 0.24). Fused with bm25: 0.482 against 0.488, 9
+and 7. Pools of 50, 100 and 400 (exploratory) all lost. No model calls. The first run scored nothing: a check found
+the harness re-embedding the wrong node of a whole-file span, and it was fixed before any number was seen.
+
+**What it changed:** cosine stays. Not tried: a sparsity penalty (λ > 0), or unmixing into node vectors only
+rather than the librarian's question vectors; the paper's gains also came partly from embeddings trained for it.
+
 ## 2026-11-10 — The librarian's code and trials moved here from viki
 
 `librarian/la.py` and `test_la.py` (4 tests, each seen to fail on a break after the move), from viki `1215fe2`.
