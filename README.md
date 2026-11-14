@@ -20,7 +20,10 @@ at drift: a requirement, its design and the code that implements it no longer sa
   private data (a project's files, its transcripts, its people's questions). What a trial finds reaches this
   repository only as a conclusion that changes something: a guideline, a requirement, a FINDINGS line with numbers
   and no private text.
-- `REQUIREMENTS_v1.md`, `FINDINGS.md`: the working set, in SE1's form. The requirements are a draft, not yet read
+- `skills/vk/SKILL.md`: the `/vk` Claude Code skill, which asks a diary by meaning (`la.py ask`), by words, or
+  exactly, and keeps it filed. Install by linking it: `ln -s "$PWD/skills/vk" ~/.claude/skills/vk`. It names
+  `vk.py` and `la.py` by absolute path on the machine it was written on; change those two lines on another.
+- `REQUIREMENTS_v1.md`, `FINDINGS.md`, `QUEUE.md`: the working set, in SE1's form. The requirements are a draft, not yet read
   back.
 - `AGENTS.md` (SE1 v1.7) and `AGENTS-DM.md` (DM1 v1.3): copied unedited from `../viki`, loaded by `CLAUDE.md`.
   This is a minimal adoption: no `se`/`dm` tools and no QUICKREF yet.
