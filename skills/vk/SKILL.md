@@ -47,7 +47,8 @@ LA="python3 /home/paradox/projects/viki-agent/librarian/la.py --store $STORE --k
 | **by meaning**: the concept, in any words | `$LA ask "QUESTION" [--k N]` |
 | by words, ranked, returning the topic each hit is in | `$VK find "WORDS" --outlines vk.judge.sonnet [--repo NAME] [--k N]` |
 | every exact occurrence, with its topic | `$VK grep "TEXT" --outlines vk.judge.sonnet [--repo NAME]` |
-| also past versions (where it used to be) | add `--all` to `find` or `grep` |
+| every match of a pattern, exhaustive | `$VK regex "PATTERN" --outlines vk.judge.sonnet [--repo NAME]` (POSIX ERE plus `\w \d \s \b`, no back-references) |
+| also past versions (where it used to be) | add `--all` to `find`, `grep` or `regex` |
 | the current check-ins of a repository | `$VK heads NAME` |
 
 Start with `coverage` once per session; "nothing ingested" (exit 1) means the diary is empty.
